@@ -254,6 +254,9 @@ form {
     &:active {
         background: whitesmoke;
     }
+    &:active, &:hover {
+        color: @orange;
+    }
 }
 
 .button {
@@ -283,7 +286,8 @@ form {
     .container {
         position: absolute;
         background: white;
-        padding: 30px;
+        padding: 30px 0 15px;
+        ;
         box-shadow: 0px -2px 7px rgba(0, 0, 0, 0.2);
         width: 100%;
         bottom: 0;
@@ -316,6 +320,11 @@ form {
             transform: translateY(100%);
             -webkit-transform: translateY(100%);
         }
+    }
+    .button {
+        height: 40px;
+        line-height: 40px;
+        border-radius: 3px;
     }
 }
 
@@ -381,5 +390,15 @@ form {
     }
     span {
         font-size: 16px;
+    }
+}
+
+.row {
+    margin-left: 10px;
+    margin-right: 10px;
+    .half-col {
+        width: 50%;
+        float: left;
+        padding: 0 10px;
     }
 }

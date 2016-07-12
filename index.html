@@ -131,10 +131,14 @@
         <div id="render-container" class="container">
             Your code is
             <input id="code" class="code" readonly></input>
-            <span id="render-copy">Click code to copy</span>
-            <span id="render-copied" class="orange" style="display: none">Copied to clipboard!</span>
-            <span>Or</span>
-            <a id="call-link" href="#" class="button">Call</a>
+            <div class="row">
+                <div class="half-col">
+                    <a id="copy-link" href="#" class="button">Copy</a>
+                </div>
+                <div class="half-col">
+                    <a id="call-link" href="#" class="button">Call</a>
+                </div>
+            </div>
         </div>
     </div>
     <div id="view-record" class="view-record">

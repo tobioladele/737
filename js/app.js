@@ -36,6 +36,7 @@ var view_record_form = document.getElementById('view-record-form');
 var render_div = document.getElementById('render');
 var code_div = document.getElementById('code');
 var call_link = document.getElementById('call-link');
+var copy_link = document.getElementById('copy-link');
 var storage = localStorage.getItem('737-numbers') || '[]';
 var database = JSON.parse(storage);
 var active_record;
@@ -250,15 +251,17 @@ function render(code) {
     addClass(render_div, 'visible');
     var close_button = document.getElementById('close-render');
 
-    var clipboard = new Clipboard('#render-container', {
+    var clipboard = new Clipboard('#copy-link', {
         text: function() {
             return code
         }
     });
 
     clipboard.on('success', function(e) {
-        document.getElementById('render-copy').style.display = "none";
-        document.getElementById('render-copied').style.display = "block";
+        copy_link.innerHTML = "Copied!";
+        setTimeout(function() {
+            copy_link.innerHTML = "Copy";
+        }, 1000);
     });
 
     clipboard.on('error', function() {

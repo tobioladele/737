@@ -3185,6 +3185,12 @@ form {
 .button:active {
   background: whitesmoke;
 }
+.submit button:active,
+.button:active,
+.submit button:hover,
+.button:hover {
+  color: #E14800;
+}
 .button {
   display: block;
   line-height: 50px;
@@ -3214,7 +3220,7 @@ form {
 .view-record .container {
   position: absolute;
   background: white;
-  padding: 30px;
+  padding: 30px 0 15px;
   box-shadow: 0px -2px 7px rgba(0, 0, 0, 0.2);
   width: 100%;
   bottom: 0;
@@ -3250,6 +3256,12 @@ form {
 .view-record.exiting .container {
   transform: translateY(100%);
   -webkit-transform: translateY(100%);
+}
+.render .button,
+.view-record .button {
+  height: 40px;
+  line-height: 40px;
+  border-radius: 3px;
 }
 .render .code {
   font-size: 18px;
@@ -3308,4 +3320,13 @@ form {
 }
 .empty span {
   font-size: 16px;
+}
+.row {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.row .half-col {
+  width: 50%;
+  float: left;
+  padding: 0 10px;
 }
