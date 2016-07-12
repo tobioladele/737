@@ -246,7 +246,7 @@ function generate(form) {
 
 function render(code) {
     code_div.value = code;
-    call_link.href = "tel://" + code;
+    call_link.href = "tel:" + code;
     addClass(render_div, 'visible');
     var close_button = document.getElementById('close-render');
 
