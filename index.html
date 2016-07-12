@@ -45,99 +45,101 @@
         </div>
     </header>
     <div id="create" class="content clear">
-        <div class="content-container">
-            <ul class="list-group">
-                <li class="list-group-item action-button" data-form="transfer-money"><i class="list-group-icon ion-android-radio-button-off"></i> <i class="list-group-next ion-chevron-right"></i> Transfer Money</li>
-                <li class="list-group-item action-button" data-form="send-airtime"><i class="list-group-icon ion-android-radio-button-off"></i> <i class="list-group-next ion-chevron-right"></i> Send Airtime</li>
-                <li class="list-group-item render-button" data-code="*737*6*1#"><i class="list-group-icon ion-android-radio-button-off"></i> Check account balance</li>
-                <li class="list-group-item render-button" data-code="*737*7#"><i class="list-group-icon ion-android-radio-button-off"></i> Get One Time Password</li>
-            </ul>
-        </div>
-        <div id="action" class="content-container">
-            <form id="transfer-money" tool="transfer" style="display:none">
-                <div class="form-group">
-                    <label for="account-number">Account Number</label>
-                    <input class="input" type="tel" id="account-number" placeholder="0012345678" maxlength="10" required>
-                </div>
-                <div class="form-group">
-                    <label for="amount-to-account">Amount To Send</label>
-                    <input class="input" type="tel" id="amount-to-account" placeholder="1000" required>
-                </div>
-                <div class="form-group">
-                    <div class="switch-label">Is this a GTBank account?</div>
-                    <div class="onoffswitch pull-right">
-                        <input type="checkbox" name="is-gtb-account" class="onoffswitch-checkbox" id="is-gtb-account" checked>
-                        <label class="onoffswitch-label" for="is-gtb-account">
-                            <span class="onoffswitch-inner"></span>
-                            <span class="onoffswitch-switch"></span>
-                        </label>
+        <div class="content-inner">
+            <div class="content-container">
+                <ul class="list-group">
+                    <li class="list-group-item action-button" data-form="transfer-money"><i class="list-group-icon ion-android-radio-button-off"></i> <i class="list-group-next ion-chevron-right"></i> Transfer Money</li>
+                    <li class="list-group-item action-button" data-form="send-airtime"><i class="list-group-icon ion-android-radio-button-off"></i> <i class="list-group-next ion-chevron-right"></i> Send Airtime</li>
+                    <li class="list-group-item render-button" data-code="*737*6*1#"><i class="list-group-icon ion-android-radio-button-off"></i> Check account balance</li>
+                    <li class="list-group-item render-button" data-code="*737*7#"><i class="list-group-icon ion-android-radio-button-off"></i> Get One Time Password</li>
+                </ul>
+            </div>
+            <div id="action" class="content-container">
+                <form id="transfer-money" tool="transfer" style="display:none">
+                    <div class="form-group">
+                        <label for="account-number">Account Number</label>
+                        <input class="input" type="tel" id="account-number" placeholder="0012345678" maxlength="10" required>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="switch-label">Save account number?</div>
-                    <div class="onoffswitch pull-right">
-                        <input type="checkbox" name="save-account-number" class="onoffswitch-checkbox" id="save-account-number" onclick="toggle('account-name-group')">
-                        <label class="onoffswitch-label" for="save-account-number">
-                            <span class="onoffswitch-inner"></span>
-                            <span class="onoffswitch-switch"></span>
-                        </label>
+                    <div class="form-group">
+                        <label for="amount-to-account">Amount To Send</label>
+                        <input class="input" type="tel" id="amount-to-account" placeholder="1000" required>
                     </div>
-                </div>
-                <div id="account-name-group" class="form-group" style="display: none">
-                    <label for="account-name">Account Name</label>
-                    <input class="input" type="text" id="account-name" placeholder="Ciroma Chukwuma">
-                </div>
-                <div class="submit">
-                    <button class="button">Generate Code</button>
-                </div>
-            </form>
-            <form id="send-airtime" tool="airtime" style="display: none">
-                <div class="form-group">
-                    <label for="phone-number">Phone Number</label>
-                    <input class="input" type="tel" id="phone-number" placeholder="0012345678" maxlength="11" required>
-                </div>
-                <div class="form-group">
-                    <label for="amount-to-number">Amount To Send</label>
-                    <input class="input" type="tel" id="amount-to-number" placeholder="1000" required>
-                </div>
-                <div class="form-group">
-                    <div class="switch-label">Save phone number?</div>
-                    <div class="onoffswitch pull-right">
-                        <input type="checkbox" name="save-phone-number" class="onoffswitch-checkbox" id="save-phone-number" onclick="toggle('phone-name-group')">
-                        <label class="onoffswitch-label" for="save-phone-number">
-                            <span class="onoffswitch-inner"></span>
-                            <span class="onoffswitch-switch"></span>
-                        </label>
+                    <div class="form-group">
+                        <div class="switch-label">Is this a GTBank account?</div>
+                        <div class="onoffswitch pull-right">
+                            <input type="checkbox" name="is-gtb-account" class="onoffswitch-checkbox" id="is-gtb-account" checked>
+                            <label class="onoffswitch-label" for="is-gtb-account">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
                     </div>
-                </div>
-                <div id="phone-name-group" class="form-group" style="display: none">
-                    <label for="phone-name">Name to save as</label>
-                    <input class="input" type="text" id="phone-name" placeholder="Ciroma's Airtel">
-                </div>
-                <div class="submit">
-                    <button class="button">Generate Code</button>
-                </div>
-            </form>
+                    <div class="form-group">
+                        <div class="switch-label">Save account number?</div>
+                        <div class="onoffswitch pull-right">
+                            <input type="checkbox" name="save-account-number" class="onoffswitch-checkbox" id="save-account-number" onclick="toggle('account-name-group')">
+                            <label class="onoffswitch-label" for="save-account-number">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div id="account-name-group" class="form-group" style="display: none">
+                        <label for="account-name">Account Name</label>
+                        <input class="input" type="text" id="account-name" placeholder="Ciroma Chukwuma">
+                    </div>
+                    <div class="submit">
+                        <button class="button">Generate Code</button>
+                    </div>
+                </form>
+                <form id="send-airtime" tool="airtime" style="display: none">
+                    <div class="form-group">
+                        <label for="phone-number">Phone Number</label>
+                        <input class="input" type="tel" id="phone-number" placeholder="0012345678" maxlength="11" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount-to-number">Amount To Send</label>
+                        <input class="input" type="tel" id="amount-to-number" placeholder="1000" required>
+                    </div>
+                    <div class="form-group">
+                        <div class="switch-label">Save phone number?</div>
+                        <div class="onoffswitch pull-right">
+                            <input type="checkbox" name="save-phone-number" class="onoffswitch-checkbox" id="save-phone-number" onclick="toggle('phone-name-group')">
+                            <label class="onoffswitch-label" for="save-phone-number">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div id="phone-name-group" class="form-group" style="display: none">
+                        <label for="phone-name">Name to save as</label>
+                        <input class="input" type="text" id="phone-name" placeholder="Ciroma's Airtel">
+                    </div>
+                    <div class="submit">
+                        <button class="button">Generate Code</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     <div id="saved" class="content clear" style="display: none">
-        <div class="content-container">
-            <ul id="saved-list" class="list-group">
-            </ul>
-        </div>
+        <ul id="saved-list" class="list-group">
+        </ul>
     </div>
     <div id="render" class="render">
+        <div id="close-render" class="modal-close"></div>
         <div id="render-container" class="container">
             Your code is
-            <div id="code" class="code"></div>
+            <input id="code" class="code" readonly></input>
             <span id="render-copy">Click code to copy</span>
             <span id="render-copied" class="orange" style="display: none">Copied to clipboard!</span>
         </div>
     </div>
-    <div id="use-saved" class="use-saved">
-        <div id="use-saved-container" class="container">
-            <h3 id="use-saved-title"></h3>
-            <form id="use-saved-form" tool="saved">
+    <div id="view-record" class="view-record">
+        <div id="close-view-record" class="modal-close"></div>
+        <div id="view-record-container" class="container">
+            <h3 id="view-record-title"></h3>
+            <form id="view-record-form" tool="saved">
                 <div class="form-group">
                     <input class="input" type="tel" id="amount-to-credit" placeholder="1000" required>
                 </div>

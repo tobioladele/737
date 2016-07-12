@@ -130,16 +130,23 @@ ul {
 }
 
 .content {
-    width: 200%;
-    transition: all 300ms ease-in-out;
-    -webkit-transition: all 300ms ease-in-out;
-    &.screen-two {
-        transform: translateX(-50%);
-        -webkit-transform: translateX(-50%);
+    width: 100%;
+    overflow: hidden;
+    .content-inner {
+        width: 200%;
+        position: relative;
+        transition: all 300ms ease-in-out;
+        -webkit-transition: all 300ms ease-in-out;
     }
     .content-container {
         width: 50%;
         float: left;
+    }
+    &.screen-two {
+        .content-inner {
+            transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
+        }
     }
     .wrapper {
         padding: 30px 20px;
@@ -229,34 +236,40 @@ form {
     float: left;
     clear: both;
     width: 100%;
-    button {
-        width: 100%;
-        text-align: center;
-        height: 50px;
-        line-height: 40px;
-        border-radius: 30px;
-        border: solid 1px @orange;
-        background: none;
-        text-transform: uppercase;
-        font-size: 14px;
-        outline: none;
-        color: @orange;
-        &:active {
-            background: whitesmoke;
-        }
+}
+
+.submit button,
+.button {
+    width: 100%;
+    text-align: center;
+    height: 50px;
+    line-height: 40px;
+    border-radius: 30px;
+    border: solid 1px @orange;
+    background: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    outline: none;
+    color: @orange;
+    &:active {
+        background: whitesmoke;
     }
 }
 
+.button {
+    display: block;
+    line-height: 50px;
+}
+
 .render,
-.use-saved {
+.view-record {
     position: fixed;
     top: 0;
     bottom: 0;
     width: 100%;
     z-index: -1;
     opacity: 0;
-    &:before {
-        content: "";
+    .modal-close {
         position: absolute;
         top: 0;
         left: 0;
@@ -282,11 +295,12 @@ form {
         -webkit-transition: all 0.3s ease;
         transform: translateY(100%);
         -webkit-transform: translateY(100%);
+        z-index: 10;
     }
     &.visible {
         z-index: 100;
         opacity: 1;
-        &:before {
+        .modal-close {
             opacity: 1;
         }
         .container {
@@ -295,7 +309,7 @@ form {
         }
     }
     &.exiting {
-        &:before {
+        .modal-close {
             opacity: 0;
         }
         .container {
@@ -309,16 +323,24 @@ form {
     .code {
         font-size: 18px;
         margin: 10px 0;
-        color: @orange;
+        color: #E14800;
         padding-bottom: 20px;
+        border: none;
         border-bottom: solid 1px whitesmoke;
+        display: block;
+        width: 100%;
+        text-align: center;
+        background: none;
     }
     span {
         font-size: 13px;
+        height: 30px;
+        line-height: 30px;
+        display: block;
     }
 }
 
-.use-saved {
+.view-record {
     form {
         margin: 0;
     }

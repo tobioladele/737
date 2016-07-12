@@ -3068,17 +3068,22 @@ ul {
   border-bottom: solid 4px white;
 }
 .content {
+  width: 100%;
+  overflow: hidden;
+}
+.content .content-inner {
   width: 200%;
+  position: relative;
   transition: all 300ms ease-in-out;
   -webkit-transition: all 300ms ease-in-out;
-}
-.content.screen-two {
-  transform: translateX(-50%);
-  -webkit-transform: translateX(-50%);
 }
 .content .content-container {
   width: 50%;
   float: left;
+}
+.content.screen-two .content-inner {
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
 }
 .content .wrapper {
   padding: 30px 20px;
@@ -3162,7 +3167,8 @@ form {
   clear: both;
   width: 100%;
 }
-.submit button {
+.submit button,
+.button {
   width: 100%;
   text-align: center;
   height: 50px;
@@ -3175,11 +3181,16 @@ form {
   outline: none;
   color: #E14800;
 }
-.submit button:active {
+.submit button:active,
+.button:active {
   background: whitesmoke;
 }
+.button {
+  display: block;
+  line-height: 50px;
+}
 .render,
-.use-saved {
+.view-record {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -3187,9 +3198,8 @@ form {
   z-index: -1;
   opacity: 0;
 }
-.render:before,
-.use-saved:before {
-  content: "";
+.render .modal-close,
+.view-record .modal-close {
   position: absolute;
   top: 0;
   left: 0;
@@ -3201,7 +3211,7 @@ form {
   -webkit-transition: all 0.3s linear;
 }
 .render .container,
-.use-saved .container {
+.view-record .container {
   position: absolute;
   background: white;
   padding: 30px;
@@ -3216,27 +3226,28 @@ form {
   -webkit-transition: all 0.3s ease;
   transform: translateY(100%);
   -webkit-transform: translateY(100%);
+  z-index: 10;
 }
 .render.visible,
-.use-saved.visible {
+.view-record.visible {
   z-index: 100;
   opacity: 1;
 }
-.render.visible:before,
-.use-saved.visible:before {
+.render.visible .modal-close,
+.view-record.visible .modal-close {
   opacity: 1;
 }
 .render.visible .container,
-.use-saved.visible .container {
+.view-record.visible .container {
   transform: translateY(0);
   -webkit-transform: translateY(0);
 }
-.render.exiting:before,
-.use-saved.exiting:before {
+.render.exiting .modal-close,
+.view-record.exiting .modal-close {
   opacity: 0;
 }
 .render.exiting .container,
-.use-saved.exiting .container {
+.view-record.exiting .container {
   transform: translateY(100%);
   -webkit-transform: translateY(100%);
 }
@@ -3245,26 +3256,34 @@ form {
   margin: 10px 0;
   color: #E14800;
   padding-bottom: 20px;
+  border: none;
   border-bottom: solid 1px whitesmoke;
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: none;
 }
 .render span {
   font-size: 13px;
+  height: 30px;
+  line-height: 30px;
+  display: block;
 }
-.use-saved form {
+.view-record form {
   margin: 0;
 }
-.use-saved h3 {
+.view-record h3 {
   margin: 0;
   font-weight: 100;
   font-size: 17px;
 }
-.use-saved input {
+.view-record input {
   text-align: center;
 }
-.use-saved .container {
+.view-record .container {
   padding-bottom: 0;
 }
-.use-saved a {
+.view-record a {
   padding: 10px 0;
   display: block;
   margin-top: 15px;

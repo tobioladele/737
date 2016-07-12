@@ -31,8 +31,8 @@ var create_div = document.getElementById('create');
 var saved_div = document.getElementById('saved');
 var saved_list = document.getElementById('saved-list');
 var saved_records = document.getElementsByClassName('saved-record');
-var use_saved = document.getElementById('use-saved');
-var use_saved_form = document.getElementById('use-saved-form');
+var view_record = document.getElementById('view-record');
+var view_record_form = document.getElementById('view-record-form');
 var render_div = document.getElementById('render');
 var code_div = document.getElementById('code');
 var storage = localStorage.getItem('737-numbers') || '[]';
@@ -44,7 +44,7 @@ function populateRecords() {
     saved_list.innerHTML = "";
 
     if (database.length == 0) {
-        var no_content = "<div class='empty'><i class='ion-drag'></i><p>Nothing here yet</p> <span>Use the checkbox on the create screen to save numbers here</div>";
+        var no_content = "<div class='empty'><i class='ion-drag'></i><p>No saved numbers</p> <span>When you generate a code, you have an option to save locally to your device</div>";
         saved_list.insertAdjacentHTML('beforeend', no_content);
         return;
     }
@@ -69,31 +69,25 @@ function openRecord(element) {
     var index = element.getAttribute('data-index');
     active_record = database[index];
     active_record.index = index;
-    use_saved_form.style.display = "";
-    addClass(use_saved, 'visible');
+    view_record_form.style.display = "";
+    addClass(view_record, 'visible');
     addClass(element, 'active');
 
     var text = "How much" + (active_record.type == 'phone' ? " airtime" : "") + " do you want to send to ";
     text += active_record.name + " (" + active_record.number + ")";
-    document.getElementById('use-saved-title').innerHTML = text;
+    document.getElementById('view-record-title').innerHTML = text;
 
     setTimeout(function() {
-        document.addEventListener('click', closeDiv);
+        var close_button = document.getElementById('close-view-record');
+        close_button.addEventListener('click', closeRecord);
     }, 500);
 }
 
-function closeDiv(e) {
-    var container = document.getElementById('use-saved-container');
-    if (e.target.id != 'use-saved-container' && !isDescendant(container, e.target)) {
-        closeRecord();
-    }
-}
-
 function closeRecord() {
-    addClass(use_saved, 'exiting');
+    addClass(view_record, 'exiting');
     setTimeout(function() {
-        removeClass(use_saved, 'exiting');
-        removeClass(use_saved, 'visible');
+        removeClass(view_record, 'exiting');
+        removeClass(view_record, 'visible');
     }, 500);
 
     for (var i = 0; i < saved_records.length; i++) {
@@ -101,7 +95,7 @@ function closeRecord() {
     }
 
     document.getElementById('amount-to-credit').value = "";
-    document.removeEventListener('click', closeDiv);
+    document.getElementById('close-view-record').removeEventListener('click', closeRecord);
 }
 
 // Delete record
@@ -234,9 +228,8 @@ function generate(form) {
             }
             break;
         case 'saved':
-            removeClass(use_saved, 'visible');
-            removeClass(use_saved, 'exiting');
             var amount = document.getElementById('amount-to-credit').value;
+            closeRecord();
             if (active_record.type == 'account') {
                 var prefix = active_record.is_gtb ? "*737*1*" : "*737*2*";
                 var code = prefix + amount + "*" + active_record.number + "#";
@@ -251,8 +244,9 @@ function generate(form) {
 }
 
 function render(code) {
-    code_div.innerHTML = code;
+    code_div.value = code;
     addClass(render_div, 'visible');
+    var close_button = document.getElementById('close-render');
 
     var clipboard = new Clipboard('#render-container', {
         text: function() {
@@ -265,22 +259,27 @@ function render(code) {
         document.getElementById('render-copied').style.display = "block";
     });
 
+    clipboard.on('error', function() {
+        code_div.select();
+        code_div.focus();
+        code_div.selectionStart = 0;
+        code_div.selectionEnd = 999;
+    })
+
     setTimeout(function() {
-        document.addEventListener('click', closeRender);
+        close_button.addEventListener('click', closeRender);
     }, 500);
 
     function closeRender(e) {
-        if (e.target.id != 'render-container' && e.target.parentNode.id != 'render-container') {
-            addClass(render_div, 'exiting');
-            var _timeout = setTimeout(function() {
-                removeClass(render_div, 'visible');
-                removeClass(render_div, 'exiting');
-                clearTimeout(_timeout);
-            }, 500);
-            document.removeEventListener('click', closeRender);
-            document.getElementById('render-copy').style.display = "block";
-            document.getElementById('render-copied').style.display = "none";
-        }
+        addClass(render_div, 'exiting');
+        var _timeout = setTimeout(function() {
+            removeClass(render_div, 'visible');
+            removeClass(render_div, 'exiting');
+            clearTimeout(_timeout);
+        }, 500);
+        close_button.removeEventListener('click', closeRender);
+        document.getElementById('render-copy').style.display = "block";
+        document.getElementById('render-copied').style.display = "none";
     }
 }
 
