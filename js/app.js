@@ -35,6 +35,7 @@ var view_record = document.getElementById('view-record');
 var view_record_form = document.getElementById('view-record-form');
 var render_div = document.getElementById('render');
 var code_div = document.getElementById('code');
+var call_link = document.getElementById('call-link');
 var storage = localStorage.getItem('737-numbers') || '[]';
 var database = JSON.parse(storage);
 var active_record;
@@ -245,6 +246,7 @@ function generate(form) {
 
 function render(code) {
     code_div.value = code;
+    call_link.href = "tel:" + code;
     addClass(render_div, 'visible');
     var close_button = document.getElementById('close-render');
 
